@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"os"
 	l "systemsim/lib"
 	m "systemsim/models"
@@ -20,12 +19,12 @@ func main(){
 
 	fmt.Println("--- Pretty Print ---")
     // Pretty print josn with MarshalIndent
-    dataJSON, err := json.MarshalIndent(data, "", "  ")
-    if err != nil {
-        log.Fatalf(err.Error())
-    }
-    fmt.Printf("%s\n", string(dataJSON))
+    // dataJSON, err := json.MarshalIndent(data, "", "  ")
+    // if err != nil {
+    //     log.Fatalf(err.Error())
+    // }
+    // fmt.Printf("%s\n", string(dataJSON))
 }
 
 
-// work through Revenue Earned link (link between Input and Link)
+// issue getting 100 from attribute 3
