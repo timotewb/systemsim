@@ -1,7 +1,6 @@
 package lib
 
 import (
-	"fmt"
 	"go/token"
 	"go/types"
 	"strconv"
@@ -21,7 +20,6 @@ func CalcLinks(s m.SimType){
 
 		// for each part (part of the equation) check its type
 		for j = 0; j <len(s.Links[i].Parts); j++{
-			fmt.Println(s.Links[i].Parts[j].LinkType)
 
 			// if link type is attribute (part from from an input's attribute value)
 			if s.Links[i].Parts[j].LinkType == "attribute" {
@@ -41,13 +39,10 @@ func CalcLinks(s m.SimType){
 
 		// udpate output
 		s.Links[i].Output = tv.Value.String()
-
-		fmt.Println(e)
-		fmt.Println(s.Links[i].Output)
 	}
 }
 
-func getInputAttributeValue(s m.SimType ,inputID int, attributeID int,) (float64){
+func getInputAttributeValue(s m.SimType ,inputID int, attributeID int) (float64){
 
 	var r float64
 
@@ -56,15 +51,14 @@ func getInputAttributeValue(s m.SimType ,inputID int, attributeID int,) (float64
 		if s.Inputs[i].ID == inputID{
 
 			// loop over each of the attributes
-			for j := 0; j < len(s.Inputs); j++ {
+			for j := 0; j < len(s.Inputs[i].Attributes); j++ {
 				if s.Inputs[i].Attributes[j].ID == attributeID{
-					fmt.Println(s.Inputs[i].Attributes[j].Value)
 					r = float64(s.Inputs[i].Attributes[j].Value)
-					fmt.Println()
 				}
 			}
 		}
 	}
+	//fmt.Printf("\ngetInputAttributeValue()\n- inputID: %d\n- attributeID: %d\n- result: %d\n\n",inputID, attributeID, r)
 	return r
 }
 

@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	l "systemsim/lib"
 	m "systemsim/models"
@@ -18,13 +19,12 @@ func main(){
 	l.CalcLinks(data)
 
 	fmt.Println("--- Pretty Print ---")
-    // Pretty print josn with MarshalIndent
-    // dataJSON, err := json.MarshalIndent(data, "", "  ")
-    // if err != nil {
-    //     log.Fatalf(err.Error())
-    // }
-    // fmt.Printf("%s\n", string(dataJSON))
+    //Pretty print josn with MarshalIndent
+    dataJSON, err := json.MarshalIndent(data, "", "  ")
+    if err != nil {
+        log.Fatalf(err.Error())
+    }
+    fmt.Printf("%s\n", string(dataJSON))
 }
 
-
-// issue getting 100 from attribute 3
+// adding a few more nodes, then need to fiure out how to calculate hierarchy
