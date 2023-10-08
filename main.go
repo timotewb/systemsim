@@ -27,5 +27,9 @@ func main(){
     fmt.Printf("%s\n", string(dataJSON))
 }
 
-// create output
+// create output - do we need it?
+
+// reset - can we have just one node type that has atttibutes, links and calcs?
+// - onenode 2 attributes and an equations
+
 // add a few more nodes, then need to fiure out how to calculate hierarchy
