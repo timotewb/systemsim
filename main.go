@@ -27,4 +27,5 @@ func main(){
     fmt.Printf("%s\n", string(dataJSON))
 }
 
-// adding a few more nodes, then need to fiure out how to calculate hierarchy
+// create output
+// add a few more nodes, then need to fiure out how to calculate hierarchy
