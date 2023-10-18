@@ -5,18 +5,18 @@ import (
 	"fmt"
 	"log"
 	"os"
-	a "systemsim/app"
+	l "systemsim/lib"
 	m "systemsim/models"
 )
 
 func main(){
 	file, _ := os.ReadFile("db.json")
-	data := m.DataType{}
+	data := m.SimType{}
 
 	_ = json.Unmarshal([]byte(file), &data)
 
-	fmt.Println("--- Calculate links ---")
-	a.Calc(data)
+	fmt.Println("--- CalcLinks() ---")
+	l.CalcLinks(data)
 
 	fmt.Println("--- Pretty Print ---")
     //Pretty print josn with MarshalIndent
@@ -26,3 +26,10 @@ func main(){
     }
     fmt.Printf("%s\n", string(dataJSON))
 }
+
+// create output - do we need it?
+
+// reset - can we have just one node type that has atttibutes, links and calcs?
+// - onenode 2 attributes and an equations
+
+// add a few more nodes, then need to fiure out how to calculate hierarchy
