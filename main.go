@@ -26,3 +26,7 @@ func main(){
     }
     fmt.Printf("%s\n", string(dataJSON))
 }
+
+// updating the equation with attribute values
+// execute equation
+// update model
