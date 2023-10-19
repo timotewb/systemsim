@@ -16,7 +16,7 @@ func main(){
 	_ = json.Unmarshal([]byte(file), &data)
 
 	fmt.Println("--- Calculate links ---")
-	a.Calc(data)
+	a.CalculateLinks(data)
 
 	fmt.Println("--- Pretty Print ---")
     //Pretty print josn with MarshalIndent
@@ -27,6 +27,8 @@ func main(){
     fmt.Printf("%s\n", string(dataJSON))
 }
 
-// updating the equation with attribute values
-// execute equation
-// update model
+// calculate dependencies
+
+
+// how do we auto calculate things e.g. link node which calculates raw materials processed based on resource
+// available - how do we auto calculate the loss n revenue if the supply of raw materials is greater than the available resource.

@@ -1,7 +1,8 @@
 package app
 
 import (
-	"fmt"
+	"go/token"
+	"go/types"
 	"strconv"
 	"strings"
 	m "systemsim/models"
@@ -15,22 +16,48 @@ func CalculateLinks(data m.DataType)(error){
 
 		// if the node type is link
 		if data.Nodes[n].Type == "link"{
-			e = data.Nodes[n].Equation
-			fmt.Println(e)
 
+			e = data.Nodes[n].Equation
 			// loop over equation parts and update equation
 			for p := 0; p < len(data.Nodes[n].Parts); p++{
-				fmt.Println(data.Nodes[n].Parts[p].Attribute_ID)
-				fmt.Println(data.Nodes[n].Parts[p].Node_ID)
 
-				v, err := GetNodeAttributeValue(data, data.Nodes[n].Parts[p].Node_ID, data.Nodes[n].Parts[p].Attribute_ID)
-				if (err == nil){
-					e = strings.Replace(e, "|"+strconv.Itoa(data.Nodes[n].Parts[p].ID)+"|", strconv.FormatFloat(v, 'g', 5, 64), 1)
+				// check if the part points to a nodes value
+				if(data.Nodes[n].Parts[p].Is_Node_Value){
+					v, err := getNodeValue(data, data.Nodes[n].Parts[p].Node_ID)
+					if (err == nil){
+						e = strings.Replace(e, "|"+strconv.Itoa(data.Nodes[n].Parts[p].ID)+"|", strconv.FormatFloat(v, 'g', 5, 64), 1)
+					} else{
+						return err
+					}
 				} else{
-					return err
+					v, err := getNodeAttributeValue(data, data.Nodes[n].Parts[p].Node_ID, data.Nodes[n].Parts[p].Attribute_ID)
+					if (err == nil){
+						e = strings.Replace(e, "|"+strconv.Itoa(data.Nodes[n].Parts[p].ID)+"|", strconv.FormatFloat(v, 'g', 5, 64), 1)
+					} else{
+						return err
+					}
 				}
 			}
+			// update data model equation
+			data.Nodes[n].Equation = e
+
+			// evaluate equation and update model
+			fs := token.NewFileSet()
+			tv, err := types.Eval(fs, nil, token.NoPos, e)
+			if err != nil {
+				// panic(err)
+				return err
+			}
+
+			f, err := strconv.ParseFloat(tv.Value.String(), 64)
+			if err != nil {
+				return err
+			} else {
+				data.Nodes[n].Value = f
+			}
+
 		} else {
+
 			// if there are no link types which use the 'e' and 'v' variables
 			_ = e
 			_ = v

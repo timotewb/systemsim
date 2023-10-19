@@ -10,5 +10,5 @@ type NodeType struct{
 	Attributes []AttributeType `json:"attributes"`
 	Equation string `json:"equation"`
 	Parts []PartType `json:"parts"`
-	Output float64 `json:"output"`
+	Value float64 `json:"value"`
 }

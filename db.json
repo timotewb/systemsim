@@ -6,7 +6,11 @@
       "description": "Raw Materials",
       "attributes": [
         { "id": 1, "description": "Quantity per Hour", "value": 10 },
-        { "id": 2, "description": "Price per Material processed", "value": 6 }
+        {
+          "id": 2,
+          "description": "Price per Material processed ($)",
+          "value": 6
+        }
       ]
     },
     {
@@ -26,12 +30,23 @@
       "id": 3,
       "type": "link",
       "description": "Revenue per Day",
-      "equation": "(|1|*|2|)*|3|*|4|",
+      "equation": "|2|*|3|*|4|",
       "parts": [
-        { "id": 1, "node_id": 1, "attibute_id": 1 },
         { "id": 2, "node_id": 2, "attibute_id": 2 },
         { "id": 3, "node_id": 2, "attibute_id": 1 },
         { "id": 4, "node_id": 1, "attibute_id": 2 }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "link",
+      "description": "Missed Revenue per Day",
+      "equation": "|4|-(|1|*|2|*|3|)",
+      "parts": [
+        { "id": 1, "node_id": 1, "attibute_id": 1 },
+        { "id": 2, "node_id": 2, "attibute_id": 1 },
+        { "id": 3, "node_id": 1, "attibute_id": 2 },
+        { "id": 4, "node_id": 3, "is_node_value": true }
       ]
     }
   ]
