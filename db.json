@@ -27,17 +27,6 @@
       ]
     },
     {
-      "id": 3,
-      "type": "link",
-      "description": "Revenue per Day",
-      "equation": "|2|*|3|*|4|",
-      "parts": [
-        { "id": 2, "node_id": 2, "attibute_id": 2 },
-        { "id": 3, "node_id": 2, "attibute_id": 1 },
-        { "id": 4, "node_id": 1, "attibute_id": 2 }
-      ]
-    },
-    {
       "id": 4,
       "type": "link",
       "description": "Missed Revenue per Day",
@@ -47,6 +36,17 @@
         { "id": 2, "node_id": 2, "attibute_id": 1 },
         { "id": 3, "node_id": 1, "attibute_id": 2 },
         { "id": 4, "node_id": 3, "is_node_value": true }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "link",
+      "description": "Revenue per Day",
+      "equation": "|1|*|2|*|3|",
+      "parts": [
+        { "id": 1, "node_id": 2, "attibute_id": 2 },
+        { "id": 2, "node_id": 2, "attibute_id": 1 },
+        { "id": 3, "node_id": 1, "attibute_id": 2 }
       ]
     }
   ]
